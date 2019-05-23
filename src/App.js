@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SearchBar from './components/SearchBar'
+import React, { useState } from 'react'
 
 function App() {
+  const [data, setData] = useState(null)
+
+  const makeRequest = async (searchParameter) => {
+    const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${encodeURIComponent(searchParameter)}`)
+    const json = await response.json()
+    setData(json)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <SearchBar onSearch={makeRequest}/>
+    {JSON.stringify(data)}
+    </>
   );
 }
 
