@@ -1,21 +1,30 @@
-import React from 'react'
-import styles from './styles.module.css'
+import React from "react";
+import styles from "./styles.module.css";
 
-const SearchResult = (data) => {
-  
- 
+const SearchResult = props => {
+  const { title, snippet, url } = props;
 
-
-  const { title, snippet, link } = data
-  
   return (
     <section className={styles.wrapper}>
-      <div className={styles.title}>{title}</div>
+      <a
+        href={url}
+        className={styles.title}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {title}
+      </a>
       <div className={styles.snippet}>{snippet}</div>
-      <div className={styles.link}>{link}</div>
+      <a
+        className={styles.url}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {url}
+      </a>
     </section>
-  ) 
-}
+  );
+};
 
-export default SearchResult
-
+export default SearchResult;

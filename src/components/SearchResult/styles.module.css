@@ -1,20 +1,41 @@
-.wrapper
-{
-
+.wrapper {
+  margin: 0 auto;
+  width: 600px;
+  margin-top: 20px;
+  padding: 7px;
 }
 
-.title
-{
-
+.title {
+  display: block;
+  font-size: 18px;
+  color: #1a0dab;
+  text-decoration: none;
 }
 
-.snippet
-{
-
+.title:hover {
+  text-decoration: underline;
 }
 
-.link
-{
- 
+.title:visited {
+  color: #609;
+}
+.snippet {
+  margin-top: 5px;
 }
 
+.url {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-decoration: none;
+  margin-top: 3px;
+  color: #006621;
+}
+
+.url:visited {
+  color: #3e413f;
+}
+
+.url:hover {
+  text-decoration: underline;
+}
