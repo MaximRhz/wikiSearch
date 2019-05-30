@@ -1,17 +1,16 @@
-import React from 'react'
-import styles from './styles.module.css'
-import SearchResult from '../SearchResult'
+import React from "react";
+import SearchResult from "../SearchResult";
 
-const SearchResultsList = (props) => {
+const SearchResultsList = props => {
+  const { data } = props;
 
-  const { data } = props
-  
   return (
-      <section className={styles.activitiesWrapper}>
-        {data.map(({title, snippet, url, key}) => <SearchResult key={key} title={title} url={url} snippet={snippet}/>)}
-      </section>
-  ) 
-}
+    <section>
+      {data.map(({ title, snippet, url, key }) => (
+        <SearchResult key={key} title={title} url={url} snippet={snippet} />
+      ))}
+    </section>
+  );
+};
 
-export default SearchResultsList
-
+export default SearchResultsList;

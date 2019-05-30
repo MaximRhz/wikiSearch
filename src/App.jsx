@@ -22,10 +22,10 @@ function App() {
   const makeRequest = async () => {
     if (query === "") {
       setError(null);
-      setSearchResults([])
-      setTotalHits(0)
+      setSearchResults([]);
+      setTotalHits(0);
       return;
-    } 
+    }
 
     let response;
     try {
@@ -70,7 +70,7 @@ function App() {
     );
 
   const pagination =
-    totalHits.length === 0 ? (
+    totalHits.length === 0 && error !== null ? (
       <></>
     ) : (
       <Pagination
