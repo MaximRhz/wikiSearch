@@ -8,7 +8,7 @@ const SearchResultsList = (props) => {
   
   return (
       <section className={styles.activitiesWrapper}>
-        {data.map(({title, snippet, url}) => <SearchResult title={title} url={url} snippet={snippet}/>)}
+        {data.map(({title, snippet, url, key}) => <SearchResult key={key} title={title} url={url} snippet={snippet}/>)}
       </section>
   ) 
 }

@@ -12,14 +12,21 @@ function App() {
   const [page, setPage] = useState(1);
   const [totalHits, setTotalHits] = useState(0);
 
-  const transformData = ({ title, snippet }) => ({
+  const transformData = ({ title, snippet, pageid }) => ({
     title,
     snippet: snippet.replace(/<[^>]+>/g, ""),
-    url: encodeURI(`https://ru.wikipedia.org/wiki/${title}`)
+    url: encodeURI(`https://ru.wikipedia.org/wiki/${title}`),
+    key: pageid
   });
 
   const makeRequest = async () => {
-    if (query === "") return;
+    if (query === "") {
+      setError(null);
+      setSearchResults([])
+      setTotalHits(0)
+      return;
+    } 
+
     let response;
     try {
       response = await fetch(
@@ -63,20 +70,18 @@ function App() {
     );
 
   const pagination =
-    query === "" ? (
+    totalHits.length === 0 ? (
       <></>
     ) : (
-      <div className="paginationWrapper">
-        <Pagination
-          hideFirstLastPages
-          hideNavigation
-          activePage={page}
-          itemsCountPerPage={20}
-          totalItemsCount={totalHits}
-          pageRangeDisplayed={5}
-          onChange={setPage}
-        />
-      </div>
+      <Pagination
+        hideFirstLastPages
+        hideNavigation
+        activePage={page}
+        itemsCountPerPage={20}
+        totalItemsCount={totalHits}
+        pageRangeDisplayed={5}
+        onChange={setPage}
+      />
     );
 
   return (
