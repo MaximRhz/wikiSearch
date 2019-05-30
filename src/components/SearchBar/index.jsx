@@ -5,15 +5,15 @@ import { useFocus } from "use-events";
 import classNames from "classnames";
 
 const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
   const [isFocused, bind] = useFocus();
+  const [input, setInput] = useState("");
   const searchBarClasses = classNames({
     [styles.searchBar]: true,
     [styles.searchBarFocused]: isFocused
   });
   const handleKeyPress = event => {
     if (event.key === "Enter") {
-      onSearch(query);
+      onSearch(input);
     }
   };
 
@@ -23,13 +23,13 @@ const SearchBar = ({ onSearch }) => {
         <input
           {...bind}
           className={styles.searchInput}
-          value={query}
-          onChange={event => setQuery(event.target.value)}
+          value={input}
+          onChange={event => setInput(event.target.value)}
           onKeyPress={handleKeyPress}
         />
         <button
           className={styles.magnifierButton}
-          onClick={() => onSearch(query)}
+          onClick={() => onSearch(input)}
         >
           <Magnifier className={styles.magnifierIcon} />
         </button>
